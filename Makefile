@@ -16,7 +16,7 @@ N_INC	=	ft_select.h
 N_SRC	=	main.c
 
 CC	=	gcc
-CC_FLAG	=	-g -Wall -Wextra -Werror -lncurses
+CC_FLAG	=	-g -Wextra -lncurses
 
 T_SRC	=	./src/
 T_INC	=	./include/

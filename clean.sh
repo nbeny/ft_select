@@ -18,3 +18,4 @@ rm -f Makefile\~
 rm -f **/**.c\#
 rm -f **/**.h\#
 rm -f **/**Makefile\#
+rm -f clean.sh\~
