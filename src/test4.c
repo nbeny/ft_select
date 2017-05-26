@@ -1,4 +1,4 @@
-#include "ft_select.h"
+#include "../include/ft_select.h"
 
 char			*xtgetstr(char *cap, char **area)
 {
