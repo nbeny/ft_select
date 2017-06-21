@@ -13,7 +13,7 @@
 NAME	=	ft_select
 
 N_INC	=	ft_select.h
-N_SRC	=	test5.c
+N_SRC	=	main.c arg.c key.c put.c
 
 CC	=	gcc
 CC_FLAG	=	-g -Wextra -lncurses
