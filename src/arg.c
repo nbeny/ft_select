@@ -14,6 +14,7 @@ t_select	*ft_create_select(t_select *begin_list, char *name)
 	select->name = ft_strdup(name);
 	select->pos_x = 0;
 	select->pos_y = 0;
+	select->select = 0;
 	select->next = NULL;
 	select->prev = NULL;
 	return (select);
@@ -47,6 +48,8 @@ void		ft_get_pos(t_select *select, t_shell *shell)
 	p.x = 0;
 	p.y = 0;
 	shell->nw_line = 1;
+	p.res = shell->ws_col / (shell->word + 2);
+	shell->nw_line = p.res;
 	while (save != NULL)
 	{
 		p.x = (shell->word + 2) * p.i;
@@ -54,9 +57,7 @@ void		ft_get_pos(t_select *select, t_shell *shell)
 		save->pos_y = p.y;
 		save = save->next;
 		p.i++;
-		if (p.i > shell->nw_line)
-			shell->nw_line = p.i;
-		if ((shell->word + 2) * p.i >= shell->ws_col)
+		if (p.i == p.res)
 		{
 			p.i = 0;
 			p.x = 0;
@@ -69,7 +70,9 @@ void		ft_previous_list(t_select *select, t_shell *shell)
 {
 	t_select	*save;
 	t_select	*bef;
+	t_shell		*s;
 
+	s = shell;
 	bef = select;
 	save = select->next;
 	while (save != NULL)
@@ -96,14 +99,15 @@ t_select	*ft_mem_arguments(char **av, t_select *select, t_shell *shell)
 			shell->word = (int)ft_strlen(av[i]);
 	}
 	ft_get_pos(select, shell);
-	/*
+/*
 	while (select)
 	{
 		ft_printf(2, "[%i][%i]\n", select->pos_x, select->pos_y);
+		ft_printf(2, "[%s]\n", select->name);
 		select = select->next;
 	}
 	ft_printf(2, "{%i}\n", shell->word);
 	exit(1);
-	*/
+*/
 	return (select);
 }

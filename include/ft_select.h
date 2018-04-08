@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2017/05/20 10:10:52 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/04/08 20:25:18 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_shell
 	char			*clear;
 	char			*cursor;
 	char			*shadow;
+	char			*visible;
 	int				word;
 	int				ws_col;
 	int				ws_row;
@@ -37,6 +38,7 @@ typedef struct		s_select
 	char			*name;
 	int				pos_x;
 	int				pos_y;
+	int				select;
 	struct s_select	*next;
 	struct s_select	*prev;
 }					t_select;
@@ -45,6 +47,7 @@ typedef struct		s_pos
 	int				i;
 	int				x;
 	int				y;
+	int				res;
 }					t_pos;
 #endif
 
@@ -52,7 +55,7 @@ typedef struct		s_pos
 **main
 */
 void	ft_init_term(t_shell *shell);
-void	ft_update_window(t_shell *shell);
+int		ft_update_window(t_shell *shell);
 int		main(int ac, char **av);
 /*
 **arg
@@ -72,6 +75,12 @@ void		ft_keys_select(t_select *select, t_shell *shell);
 /*
 **put
 */
-void	ft_print_select(t_select *select, t_shell *shell);
-void	ft_clear_cursor(t_select *select, t_shell *shell);
-void	ft_print_cursor(t_select *select, t_shell *shell);
+void		ft_print_select(t_select *select, t_shell *shell);
+void		ft_clear_cursor(t_select *select, t_shell *shell);
+void		ft_print_cursor(t_select *select, t_shell *shell);
+void		ft_print_selection(t_select *select, t_shell *shell);
+/*
+**select
+*/
+t_select	*ft_spacex(t_select *select, t_shell *shell);
+void		ft_enter(t_select *select, t_shell *shell);

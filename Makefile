@@ -6,18 +6,18 @@
 #    By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/12 01:47:28 by nbeny             #+#    #+#              #
-#    Updated: 2017/04/12 01:47:32 by nbeny            ###   ########.fr        #
+#    Updated: 2018/04/08 18:47:43 by nbeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_select
 
 N_INC	=	ft_select.h
-N_SRC	=	main.c arg.c key.c put.c
+N_SRC	=	main.c arg.c key.c put.c select.c
 
-CC	=	gcc
-CC_FLAG	=	-g -Wextra -lncurses
-
+CC		=	gcc
+CC_FLAG	=	-g -Wextra -Wall -Werror
+CURSES	=	-lncurses
 T_SRC	=	./src/
 T_INC	=	./include/
 T_OBJ	=	./obj/
@@ -64,7 +64,7 @@ $(NAME): $(OBJ)
 	@echo ">$(CL_V)Build: $(CL_VG)ft_printf$(CL_N)"
 	@make -C $(T_PTF)
 	@echo ">$(CL_V)Build: $(CL_VG)$(NAME)$(CL_N)"
-	@$(CC) $(CC_FLAG) -o $(NAME) $(OBJ) $(L_LFT) $(L_PTF)
+	@$(CC) $(CC_FLAG) -o $(NAME) $(OBJ) $(L_LFT) $(L_PTF) $(CURSES)
 
 $(T_OBJ)%.o: $(T_SRC)%.c
 	@echo ">$(CL_V)Creat: Objects files..$(CL_N)"
