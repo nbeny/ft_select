@@ -62,10 +62,6 @@ void		ft_get_pos(t_select *select, t_shell *shell)
 			p.i = 0;
 			p.x = 0;
 			p.y++;
-			if (p.y >= shell->ws_row)
-			{
-				shell->scroll++;
-			}
 		}
 	}
 }

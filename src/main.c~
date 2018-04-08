@@ -18,7 +18,6 @@ void	ft_init_term(t_shell *shell)
 	shell->term.c_lflag &= ~ECHO;
 	shell->term.c_cc[VMIN] = 1;
 	shell->term.c_cc[VTIME] = 0;
-	shell->scroll = 0;
 	tcsetattr(0, TCSADRAIN, &(shell->term));
 	tputs(tgetstr("cl", NULL), 1, ft_putchar);
 	tputs(tgetstr("vi", NULL), 1, ft_putchar);

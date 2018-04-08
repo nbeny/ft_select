@@ -15,23 +15,13 @@ t_select	*ft_up_arrow(t_select *select, t_shell *shell)
 			select = select->prev;
 		ft_print_cursor(select, shell);
 	}
-	if (shell->scroll < select->pos_y)
-		ft_print_cursor(select, shell);
-	else
-	{
-		shell->scroll--;
-		tputs(tgetstr("sr", NULL), 1, ft_putchar);
-		ft_print_cursor(select, shell);
-	}
 	return (select);
 }
 
 t_select	*ft_down_arrow(t_select *select, t_shell *shell)
 {
 	int			i;
-	int			a;
 
-	a = 0;
 	i = -1;
 	if (select != NULL)
 	{
@@ -41,14 +31,7 @@ t_select	*ft_down_arrow(t_select *select, t_shell *shell)
 			ft_print_selection(select, shell);
 		while (++i != shell->nw_line && select->next != NULL)
 			select = select->next;
-		if ((shell->ws_row - 1) >= select->pos_y)
-			ft_print_cursor(select, shell);
-		else
-		{
-			shell->scroll++;
-			tputs(tgetstr("sf", NULL), 1, ft_putchar);
-			ft_print_cursor(select, shell);
-		}
+		ft_print_cursor(select, shell);
 	}
 	return (select);
 }

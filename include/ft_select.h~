@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/04/08 22:13:57 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/04/08 20:25:18 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct		s_shell
 	int				ws_col;
 	int				ws_row;
 	int				nw_line;
-	int				scroll;
 }					t_shell;
 typedef struct		s_select
 {

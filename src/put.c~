@@ -26,10 +26,7 @@ void	ft_print_select(t_select *select, t_shell *shell)
 	{
 		i = shell->scroll;
 		while (i != 0)
-		{
 			tputs(tgetstr("sr", NULL), 1, ft_putchar);
-			i--;
-		}
 	}
 //	tputs(tgetstr("rc", NULL), 1, ft_putchar);
 //    tputs(tgetstr("kM", NULL), 1, ft_putchar);
