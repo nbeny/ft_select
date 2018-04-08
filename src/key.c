@@ -79,7 +79,8 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 	{
 		if (ft_update_window(shell))
 		{
-			tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar);
+			tputs(tgetstr("cl", NULL), 1, ft_putchar);
+//			tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar);
 			ft_get_pos(select, shell);
 			ft_print_select(select, shell);
 			while (select->prev != NULL)

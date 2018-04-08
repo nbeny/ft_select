@@ -6,6 +6,7 @@ t_select	*ft_spacex(t_select *select, t_shell *shell)
 	{
 		ft_print_selection(select, shell);
 		select->select = 1;
+		select = ft_right_arrow(select, shell);
 	}
 	else
 	{
@@ -27,6 +28,7 @@ void		ft_enter(t_select *select, t_shell *shell)
 	tcsetattr(0, TCSADRAIN, &(shell->oldterm));
 	while(s->prev != NULL)
 		s = s->prev;
+	ft_printf(1, "\n");
 	while(s != NULL)
 	{
 		if (s->select == 1)

@@ -6,6 +6,8 @@ void	ft_print_select(t_select *select, t_shell *shell)
 	int			i;
 	int			res;
 
+//    tputs(tgetstr("im", NULL), 1, ft_putchar);
+//    tputs(tgetstr("ic", NULL), 1, ft_putchar);
 	save = select;
 	i = 0;
 	res = shell->ws_col / (shell->word + 2);
@@ -20,6 +22,7 @@ void	ft_print_select(t_select *select, t_shell *shell)
 		i++;
 		save = save->next;
 	}
+//    tputs(tgetstr("kM", NULL), 1, ft_putchar);
 }
 
 void	ft_clear_cursor(t_select *select, t_shell *shell)
