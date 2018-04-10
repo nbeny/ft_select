@@ -43,18 +43,19 @@ int		ft_update_window(t_shell *shell)
 
 int		main(int ac, char **av)
 {
-	t_shell		shell;
+	t_shell		*shell;
 	t_select	*select;
 
 	select = NULL;
 	if (ac > 1)
 	{
-		ft_init_term(&shell);
-		ft_update_window(&shell);
-		select = ft_mem_arguments(av, select, &shell);	
-		ft_print_select(select, &shell);
-		ft_print_cursor(select, &shell);
-		ft_keys_select(select, &shell);
+		shell = select_static();
+		ft_init_term(shell);
+		ft_update_window(shell);
+		select = ft_mem_arguments(av, select, shell);	
+		ft_print_select(select, shell);
+		ft_print_cursor(select, shell);
+		ft_keys_select(select, shell);
 	}
 	return (0);
 }

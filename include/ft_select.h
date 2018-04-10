@@ -19,6 +19,7 @@
 # include <curses.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+# include <signal.h>
 
 typedef struct		s_scroll
 {
@@ -42,6 +43,7 @@ typedef struct		s_shell
 	int				x;
 	int				y;
 	struct s_scroll	scroll;
+	struct s_select	*select;
 }					t_shell;
 typedef struct		s_select
 {
@@ -96,3 +98,9 @@ void		ft_print_selection(t_select *select, t_shell *shell);
 */
 t_select	*ft_spacex(t_select *select, t_shell *shell);
 void		ft_enter(t_select *select, t_shell *shell);
+/*
+**signal
+*/
+void		*select_static(void);
+void		sig_exe(int sig);
+void		sig_init(int sig);

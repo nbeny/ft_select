@@ -214,6 +214,7 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 
 	while (42)
 	{
+		signal(SIGINT, sig_init);
 		if (ft_update_window(shell))
 		{
 			tputs(tgetstr("cl", NULL), 1, ft_putchar);

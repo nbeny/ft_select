@@ -112,6 +112,7 @@ t_select	*ft_mem_arguments(char **av, t_select *select, t_shell *shell)
 			shell->word = (int)ft_strlen(av[i]);
 	}
 	ft_get_pos(select, shell);
+	shell->select = select;
 /*
 	while (select)
 	{
