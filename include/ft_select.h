@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/04/08 22:13:57 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/04/10 10:17:03 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <curses.h>
 # include <sys/ioctl.h>
 
+typedef struct		s_scroll
+{
+	int		i;
+	int		sc;
+	int		y;
+}					t_scroll;
 typedef struct		s_shell
 {
 	struct termios	oldterm;
@@ -32,7 +38,7 @@ typedef struct		s_shell
 	int				ws_col;
 	int				ws_row;
 	int				nw_line;
-	int				scroll;
+	struct s_scroll	scroll;
 }					t_shell;
 typedef struct		s_select
 {
@@ -63,7 +69,9 @@ int		main(int ac, char **av);
 */
 t_select	*ft_create_elem(t_select *begin_list, char *name);
 t_select	*ft_list_push_back(t_select *begin_list, char *name);
+t_scroll	ft_get_scroll(t_shell *shell, t_pos *p);
 void		ft_get_pos(t_select *select, t_shell *shell);
+void		ft_previous_list(t_select *select, t_shell *shell);
 t_select	*ft_mem_arguments(char **av, t_select *select, t_shell *shell);
 /*
 **key
