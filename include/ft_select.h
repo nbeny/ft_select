@@ -18,6 +18,7 @@
 # include <term.h>
 # include <curses.h>
 # include <sys/ioctl.h>
+# include <fcntl.h>
 
 typedef struct		s_scroll
 {
@@ -38,6 +39,8 @@ typedef struct		s_shell
 	int				ws_col;
 	int				ws_row;
 	int				nw_line;
+	int				x;
+	int				y;
 	struct s_scroll	scroll;
 }					t_shell;
 typedef struct		s_select

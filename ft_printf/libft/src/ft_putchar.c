@@ -17,6 +17,6 @@ int		ft_putchar(int c)
 	wchar_t wc;
 
 	wc = (wchar_t)c;
-	write(1, &wc, 1);
+	write(0, &wc, 1);
 	return(0);
 }

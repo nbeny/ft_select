@@ -24,11 +24,14 @@ void		ft_enter(t_select *select, t_shell *shell)
 	tputs(tgetstr("ve", NULL), 1, ft_putchar);
 	while (s->next != NULL)
 		s = s->next;
-	tputs(tgoto(tgetstr("cm", NULL), (select->pos_x + shell->word + 1), select->pos_y), 1, ft_putchar);
+//	tputs(tgoto(tgetstr("cm", NULL), (select->pos_x + shell->word + 1), select->pos_y), 1, ft_putchar);
 	tcsetattr(0, TCSADRAIN, &(shell->oldterm));
 	while(s->prev != NULL)
+	{
+		if (s->prev != NULL && s->pos_y != s->prev->pos_y)
+			ft_printf(1, "\n");
 		s = s->prev;
-	ft_printf(1, "\n");
+	}
 	while(s != NULL)
 	{
 		if (s->select == 1)

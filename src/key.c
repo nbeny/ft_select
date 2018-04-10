@@ -1,5 +1,35 @@
 #include "ft_select.h"
 
+void    ft_sheck_pos(t_shell *term)
+{
+    struct winsize  ws;
+    char            *ansi;
+    char            *buff;
+    char            *tmp;
+
+    if ((ansi = ft_strnew(10)) == NULL)
+        return ;
+    if ((buff = ft_strnew(50)) == NULL)
+        return ;
+    if (ioctl(0, TIOCGWINSZ, &ws) == -1)
+        return ;
+    term->ws_row = ws.ws_row;
+    term->ws_col = ws.ws_col;
+    ft_printf(0, "\E[6n");
+    while (ft_strchr(buff, 'R') == NULL)
+    {
+        ft_bzero(buff, 10);
+        read(0, buff, 10);
+        tmp = ansi;
+        ansi = ft_strjoin(tmp, buff);
+        ft_strdel(&tmp);
+    }
+    term->y = ft_atoi(&ansi[2]);
+    term->x = ft_atoi(&ft_strchr(&ansi[2], ';')[1]);
+    ft_strdel(&buff);
+    ft_strdel(&ansi);
+}
+
 t_select	*ft_up_arrow(t_select *select, t_shell *shell)
 {
 	int			i;
@@ -20,7 +50,10 @@ t_select	*ft_up_arrow(t_select *select, t_shell *shell)
 	else if (shell->scroll.i > select->pos_y)
 	{
 		shell->scroll.i--;
-		if (shell->scroll.i > shell->ws_row)
+		ft_sheck_pos(shell);
+//		ft_printf(2, "shell->y = %d", shell->y);
+		if (shell->y == 1)
+			tputs(tgetstr("sr", NULL), 1, ft_putchar);
 		tputs(tgetstr("up", NULL), 1, ft_putchar);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
 		ft_print_cursor(select, shell);
@@ -74,8 +107,10 @@ t_select	*ft_right_arrow(t_select *select, t_shell *shell)
 		select = select->next;
 	else
 	{
-		while (select->prev != NULL)
-			select = select->prev;
+		ft_print_cursor(select, shell);
+		return (select);
+//		while (select->prev != NULL)
+//			select = select->prev;
 	}
 //	ft_printf(2,"[%d][%d]\n", shell->scroll.i, select->pos_y);
 	if (shell->scroll.i == select->pos_y)
@@ -102,7 +137,7 @@ t_select	*ft_right_arrow(t_select *select, t_shell *shell)
 
 t_select	*ft_left_arrow(t_select *select, t_shell *shell)
 {
-	t_select	*s;
+//	t_select	*s;
 
 	if (select->select == 0)
 		ft_clear_cursor(select, shell);
@@ -112,22 +147,28 @@ t_select	*ft_left_arrow(t_select *select, t_shell *shell)
 		select = select->prev;
 	else
 	{
-		s = select;
-		while (select->next != NULL)
-			select = select->next;
+		ft_print_cursor(select, shell);
+		return (select);
+//		s = select;
+//		while (select->next != NULL)
+//			select = select->next;
 	}
 	if (shell->scroll.i == select->pos_y)
 		ft_print_cursor(select, shell);
-	else if (shell->scroll.i > select->pos_y &&\
-			s->pos_y != 0 && s->pos_x != 1)
+	else if (shell->scroll.i > select->pos_y)
 	{
 		shell->scroll.i--;
+		ft_sheck_pos(shell);
+		if (shell->y == 1 && select->pos_x == 1)
+			tputs(tgetstr("sr", NULL), 1, ft_putchar);
 		tputs(tgetstr("up", NULL), 1, ft_putchar);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
 		ft_print_cursor(select, shell);
 	}
+	/*
 	else
 	{
+		ft_sheck_pos(shell);
 		while (shell->scroll.i != shell->scroll.y - 1)
 		{
 			tputs(tgetstr("do", NULL), 1, ft_putchar);
@@ -136,6 +177,22 @@ t_select	*ft_left_arrow(t_select *select, t_shell *shell)
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
 		ft_print_cursor(select, shell);
 	}
+	*/
+	/*
+	if (shell->scroll.i == select->pos_y)
+		ft_print_cursor(select, shell);
+	else if (shell->scroll.i > select->pos_y)
+	{
+		shell->scroll.i--;
+		ft_sheck_pos(shell);
+//		ft_printf(2, "shell->y = %d", shell->y);
+		if (shell->y == 1)
+			tputs(tgetstr("sr", NULL), 1, ft_putchar);
+		tputs(tgetstr("up", NULL), 1, ft_putchar);
+		tputs(tgetstr("cr", NULL), 1, ft_putchar);
+		ft_print_cursor(select, shell);
+	}
+	*/
 /*
 	else
 	{
@@ -161,6 +218,8 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 		{
 			tputs(tgetstr("cl", NULL), 1, ft_putchar);
 //			tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar);
+			while (select->prev != NULL)
+				select = select->prev;
 			ft_get_pos(select, shell);
 			ft_print_select(select, shell);
 			while (select->prev != NULL)
