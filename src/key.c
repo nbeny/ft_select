@@ -225,7 +225,7 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 		signal(SIGINT, sig_int);
 //		signal(SIGTSTP, sig_stop);
 		signal(SIGCONT, sig_cont);
-//		signal(SIGSEGV, sig_segv);
+//		signal(SIGKILL, sig_segv);
 		select = shell->select;
 		if (ft_update_window(shell))
 		{
