@@ -7,7 +7,20 @@ void	*select_static(void)
 	return (&shell);
 }
 
-void	sig_exe(int sig)
+void	sig_segv(int sig)
+{
+	t_shell	*shell;
+
+	if (sig == SIGSEGV)
+	{
+		shell = (t_shell *)select_static();
+		tputs(tgetstr("ve", NULL), 1, ft_putchar);
+		tcsetattr(0, TCSADRAIN, &(shell->oldterm));
+		exit(EXIT_SUCCESS);
+	}
+}
+
+void	sig_stop(int sig)
 {
 	t_shell	*shell;
 
@@ -16,6 +29,7 @@ void	sig_exe(int sig)
 		shell = (t_shell *)select_static();
 		tputs(tgetstr("ve", NULL), 1, ft_putchar);
 		tcsetattr(0, TCSADRAIN, &(shell->oldterm));
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -30,18 +44,19 @@ void	sig_cont(int sig)
 		shell = (t_shell *)select_static();
 		select = shell->select;
 		ft_init_term(shell);
-//          tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar);
+		tcsetattr(0, TCSADRAIN, &(shell->term));
 		while (select->prev != NULL)
 			select = select->prev;
 		ft_get_pos(select, shell);
 		ft_print_select(select, shell);
 		while (select->prev != NULL)
 			select = select->prev;
+		shell->select = select;
 		ft_print_cursor(select, shell);
 	}
 }
 
-void	sig_init(int sig)
+void	sig_int(int sig)
 {
 	t_shell	*shell;
 

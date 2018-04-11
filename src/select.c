@@ -1,5 +1,37 @@
 #include "ft_select.h"
 
+void		ft_found_printer(t_select *select, t_shell *shell)
+{
+	t_select	*min;
+	t_select	*max;
+	t_select	*s;
+	int			i;
+
+	i = 1;
+	s = select;
+	while (s->prev != NULL && s->prev->pos_x < s->pos_x)
+		s = s->prev;
+//	if (s->prev != NULL)
+//		s = s->prev;
+	min = s;
+	while (s->next != NULL && s->next->pos_x > s->pos_x)
+	{
+		i++;
+		s = s->next;
+	}
+//	if (s->next != NULL)
+//		s = s->next;
+	max = s;
+	while (min != NULL && min != max)
+	{
+		ft_printf(0, "[%-*s]", shell->word, min->name);
+		min = min->next;
+		i--;
+	}
+	ft_printf(0, "[%-*s]", shell->word, min->name);
+	tputs(tgetstr("cr", NULL), 1, ft_putchar);
+}
+
 t_select	*ft_spacex(t_select *select, t_shell *shell)
 {
 	if (select->select == 0)

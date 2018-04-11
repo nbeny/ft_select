@@ -33,6 +33,13 @@ void	ft_print_select(t_select *select, t_shell *shell)
 		i++;
 		save = save->next;
 	}
+	i = 0;
+	if (shell->scroll.i == shell->ws_row - 1)
+		while (i != shell->nw_line - 1)
+		{
+			ft_printf(0, "[%-*s]", shell->word, save->name);
+			i++;
+		}
 	save = select;
 	while (save->next != NULL)
 		save = save->next;

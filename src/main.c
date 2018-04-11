@@ -49,6 +49,7 @@ int		main(int ac, char **av)
 	select = NULL;
 	if (ac > 1)
 	{
+//		signal(SIGCONT, sig_cont);
 		shell = select_static();
 		ft_init_term(shell);
 		ft_update_window(shell);

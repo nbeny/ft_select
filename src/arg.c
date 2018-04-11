@@ -66,7 +66,7 @@ void		ft_get_pos(t_select *select, t_shell *shell)
 	{
 		p.x = (shell->word + 2) * p.i;
 		save->pos_x = p.x + 1;
-		save->pos_y = p.y;// - sc;
+		save->pos_y = p.y;
 		save = save->next;
 		p.i++;
 		if (p.i == p.res)

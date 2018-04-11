@@ -56,6 +56,8 @@ t_select	*ft_up_arrow(t_select *select, t_shell *shell)
 			tputs(tgetstr("sr", NULL), 1, ft_putchar);
 		tputs(tgetstr("up", NULL), 1, ft_putchar);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
+		if (shell->y == 1)
+			ft_found_printer(select, shell);
 		ft_print_cursor(select, shell);
 	}
 /*
@@ -91,6 +93,7 @@ t_select	*ft_down_arrow(t_select *select, t_shell *shell)
 			shell->scroll.i++;
 			tputs(tgetstr("do", NULL), 1, ft_putchar);
 			tputs(tgetstr("cr", NULL), 1, ft_putchar);
+			ft_found_printer(select, shell);
 			ft_print_cursor(select, shell);
 		}
 	}
@@ -120,6 +123,7 @@ t_select	*ft_right_arrow(t_select *select, t_shell *shell)
 			shell->scroll.i++;
 			tputs(tgetstr("do", NULL), 1, ft_putchar);
 			tputs(tgetstr("cr", NULL), 1, ft_putchar);
+			ft_found_printer(select, shell);
 			ft_print_cursor(select, shell);
 	}
 	else
@@ -130,6 +134,7 @@ t_select	*ft_right_arrow(t_select *select, t_shell *shell)
 			shell->scroll.i--;
 		}
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
+		ft_found_printer(select, shell);
 		ft_print_cursor(select, shell);
 	}
 	return (select);
@@ -145,24 +150,26 @@ t_select	*ft_left_arrow(t_select *select, t_shell *shell)
 		ft_print_selection(select, shell);
 	if (select->prev != NULL)
 		select = select->prev;
-	else
+/*	else
 	{
 		ft_print_cursor(select, shell);
 		return (select);
 //		s = select;
 //		while (select->next != NULL)
 //			select = select->next;
-	}
+}*/
 	if (shell->scroll.i == select->pos_y)
 		ft_print_cursor(select, shell);
 	else if (shell->scroll.i > select->pos_y)
 	{
 		shell->scroll.i--;
 		ft_sheck_pos(shell);
-		if (shell->y == 1 && select->pos_x == 1)
+		if (shell->y == 1 && select->pos_x > 4)
 			tputs(tgetstr("sr", NULL), 1, ft_putchar);
 		tputs(tgetstr("up", NULL), 1, ft_putchar);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar);
+		if (shell->y == 1 && select->pos_x > 4)
+			ft_found_printer(select, shell);
 		ft_print_cursor(select, shell);
 	}
 	/*
@@ -214,7 +221,12 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 
 	while (42)
 	{
-		signal(SIGINT, sig_init);
+		shell->select = select;
+		signal(SIGINT, sig_int);
+//		signal(SIGTSTP, sig_stop);
+		signal(SIGCONT, sig_cont);
+//		signal(SIGSEGV, sig_segv);
+		select = shell->select;
 		if (ft_update_window(shell))
 		{
 			tputs(tgetstr("cl", NULL), 1, ft_putchar);
