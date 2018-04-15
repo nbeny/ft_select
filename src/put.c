@@ -29,15 +29,22 @@ void	ft_print_select(t_select *select, t_shell *shell)
 			tputs(tgetstr("cr", NULL), 1, ft_putchar);
 			++shell->scroll.i;
 		}
-		ft_printf(0, "[%-*s]", shell->word, save->name);
+		if (save->select == 0)
+			ft_printf(0, "[%-*s]", shell->word, save->name);
+		if (save->select == 1)
+			ft_printf(0, "\[\033[34;7m%-*s\033[0m]", shell->word, save->name);
 		i++;
 		save = save->next;
 	}
 	i = 0;
 	if (shell->scroll.i == shell->ws_row - 1)
-		while (i != shell->nw_line - 1)
+		while (i != shell->nw_line - 1 && save != NULL)
 		{
-			ft_printf(0, "[%-*s]", shell->word, save->name);
+			if (save->select == 0)
+				ft_printf(0, "[%-*s]", shell->word, save->name);
+			if (save->select == 1)
+				ft_printf(0, "\[\033[34;7m%-*s\033[0m]", shell->word, save->name);
+			save = save->next;
 			i++;
 		}
 	save = select;

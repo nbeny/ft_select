@@ -1,5 +1,7 @@
 #include "ft_select.h"
 
+volatile sig_atomic_t	lastpstp;
+
 void	*select_static(void)
 {
 	static t_shell	shell;
@@ -19,19 +21,32 @@ void	sig_segv(int sig)
 		exit(EXIT_SUCCESS);
 	}
 }
-
+/*
 void	sig_stop(int sig)
 {
-	t_shell	*shell;
+	t_shell			*shell;
+//	struct winsize	ws;
+	t_select		*select;
 
-	if (sig == SIGSTOP)
+	shell = (t_shell *)select_static();
+//	tputs(tgetstr("ve", NULL), 1, ft_putchar);
+	tcsetattr(0, TCSANOW, &(shell->oldterm));
+	select = shell->select;
+	while (select->prev != NULL)
+		select = select->prev;
+	shell->select = select;
+	if (sig == SIGTSTP)
 	{
-		shell = (t_shell *)select_static();
-		tputs(tgetstr("ve", NULL), 1, ft_putchar);
-		tcsetattr(0, TCSADRAIN, &(shell->oldterm));
-		exit(EXIT_SUCCESS);
+//		SIG_DFL;
+//		ioctl(1, TIOCSTI, &ws);
+//		tputs(tgetstr("ke", NULL), 0, ft_putchar);
+//		tputs(tgetstr("te", NULL), 0, ft_putchar);
+//		tputs(tgetstr("ve", NULL), 0, ft_putchar);
+//		tputs(tgetstr("cd", NULL), 0, ft_putchar);
+//		fflush(stdout);
 	}
 }
+*/
 
 void	sig_cont(int sig)
 {

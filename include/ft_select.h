@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/04/10 10:17:03 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/04/14 14:18:20 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/ioctl.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <sys/types.h>
 
 typedef struct		s_scroll
 {

@@ -24,11 +24,17 @@ void		ft_found_printer(t_select *select, t_shell *shell)
 	max = s;
 	while (min != NULL && min != max)
 	{
-		ft_printf(0, "[%-*s]", shell->word, min->name);
+		if (min->select == 0)
+			ft_printf(0, "[%-*s]", shell->word, min->name);
+		if (min->select == 1)
+			ft_printf(0, "\[\033[34;7m%-*s\033[0m]", shell->word, min->name);
 		min = min->next;
 		i--;
 	}
-	ft_printf(0, "[%-*s]", shell->word, min->name);
+	if (min->select == 0)
+		ft_printf(0, "[%-*s]", shell->word, min->name);
+	if (min->select == 1)
+		ft_printf(0, "\[\033[34;7m%-*s\033[0m]", shell->word, min->name);
 	tputs(tgetstr("cr", NULL), 1, ft_putchar);
 }
 
