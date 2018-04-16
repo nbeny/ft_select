@@ -221,17 +221,17 @@ void	ft_keys_select(t_select *select, t_shell *shell)
 
 	while (42)
 	{
-//		shell->select = select;
+		shell->select = select;
 		signal(SIGINT, sig_int);
 //		signal(SIGTSTP, sig_) == SIG_IGN
-/*		if (signal(SIGTSTP, SIG_DFL) != SIG_ERR)
-		{
-			while (select->prev != NULL)
-				select = select->prev;
-				}*/
+		signal(SIGTSTP, SIG_DFL);
+//		{
+//			while (select->prev != NULL)
+//				select = select->prev;
+//		}
 //		signal(SIGTSTP, sig_stop)
 		signal(SIGCONT, sig_cont);
-//		select = shell->select;
+		select = shell->select;
 		if (ft_update_window(shell))
 		{
 			tputs(tgetstr("cl", NULL), 1, ft_putchar);

@@ -59,7 +59,6 @@ void	sig_cont(int sig)
 		shell = (t_shell *)select_static();
 		select = shell->select;
 		ft_init_term(shell);
-		tcsetattr(0, TCSADRAIN, &(shell->term));
 		while (select->prev != NULL)
 			select = select->prev;
 		ft_get_pos(select, shell);
