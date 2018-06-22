@@ -96,6 +96,16 @@ void	ft_print_cursor(t_select *select, t_shell *shell)
 	tputs(tgetstr("cr", NULL), 1, ft_putchar);
 }
 
+void	ft_print_first_cursor(t_select *select, t_shell *shell)
+{
+	int		i;
+
+	i = 0;
+	tputs(tgetstr("cr", NULL), 1, ft_putchar);
+	ft_printf(0, "\[\033[34;4m%-*s\033[0m]", shell->word, select->name);
+	tputs(tgetstr("cr", NULL), 1, ft_putchar);
+}
+
 void	ft_print_selection(t_select *select, t_shell *shell)
 {
 	int		i;

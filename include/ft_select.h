@@ -93,6 +93,7 @@ void		ft_keys_select(t_select *select, t_shell *shell);
 void		ft_print_select(t_select *select, t_shell *shell);
 void		ft_clear_cursor(t_select *select, t_shell *shell);
 void		ft_print_cursor(t_select *select, t_shell *shell);
+void		ft_print_first_cursor(t_select *select, t_shell *shell);
 void		ft_print_selection(t_select *select, t_shell *shell);
 /*
 **select

@@ -53,9 +53,9 @@ int		main(int ac, char **av)
 		shell = select_static();
 		ft_init_term(shell);
 		ft_update_window(shell);
-		select = ft_mem_arguments(av, select, shell);	
+		select = ft_mem_arguments(av, select, shell);
 		ft_print_select(select, shell);
-		ft_print_cursor(select, shell);
+		ft_print_first_cursor(select, shell);
 		ft_keys_select(select, shell);
 	}
 	return (0);
