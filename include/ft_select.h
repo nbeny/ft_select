@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 17:47:44 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 17:56:42 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int		main(int ac, char **av);
 t_select	*ft_create_elem(t_select *begin_list, char *name);
 t_select	*ft_list_push_back(t_select *begin_list, char *name);
 t_scroll	ft_get_scroll(t_shell *shell, t_pos *p);
-void		ft_get_pos(t_select *select, t_shell *shell);
 void		ft_previous_list(t_select *select, t_shell *shell);
 t_select	*ft_mem_arguments(char **av, t_select *select, t_shell *shell);
 /*
@@ -98,6 +97,7 @@ void		ft_print_selection(t_select *select, t_shell *shell);
 **select
 */
 void		init_p(t_pos *p);
+void		ft_get_pos(t_select *select, t_shell *shell);
 t_select	*ft_spacex(t_select *select, t_shell *shell);
 void		ft_enter(t_select *select, t_shell *shell);
 void		ft_found_printer(t_select *select, t_shell *shell);

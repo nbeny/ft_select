@@ -6,7 +6,7 @@
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 17:42:24 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 17:42:25 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 18:01:43 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@ void	ft_print_select(t_select *select, t_shell *shell)
 {
 	t_select	*save;
 	int			i;
-//	int			res;
 
-//    tputs(tgetstr("im", NULL), 1, ft_putchar);
-//    tputs(tgetstr("sc", NULL), 1, ft_putchar);
-//	while (select->prev != NULL)
-//		select = select->prev;
 	save = select;
 	i = 0;
 	if (shell->scroll.i != 0)
@@ -65,19 +60,11 @@ void	ft_print_select(t_select *select, t_shell *shell)
 	if (shell->scroll.i != 0)
 		while (shell->scroll.i != 0 && save != NULL)
 		{
-/*			if (shell->scroll.i <= shell->scroll.sc)
-			{
-				ft_printf(1, "[%-*s]", shell->word, save->name);
-				tputs(tgetstr("sr", NULL), 1, ft_putchar);
-				}*/
 			tputs(tgetstr("up", NULL), 1, ft_putchar);
 			tputs(tgetstr("cr", NULL), 1, ft_putchar);
 			save = save->prev;
 			shell->scroll.i--;
 		}
-//	tputs(tgetstr("ho", NULL), 1, ft_putchar);
-//	tputs(tgetstr("rc", NULL), 1, ft_putchar);
-//	tputs(tgetstr("kM", NULL), 1, ft_putchar);
 }
 
 void	ft_clear_cursor(t_select *select, t_shell *shell)

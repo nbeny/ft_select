@@ -6,13 +6,11 @@
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 17:42:38 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 17:42:39 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 17:59:18 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-volatile sig_atomic_t	lastpstp;
 
 void	*select_static(void)
 {
@@ -33,32 +31,6 @@ void	sig_segv(int sig)
 		exit(EXIT_SUCCESS);
 	}
 }
-/*
-void	sig_stop(int sig)
-{
-	t_shell			*shell;
-//	struct winsize	ws;
-	t_select		*select;
-
-	shell = (t_shell *)select_static();
-//	tputs(tgetstr("ve", NULL), 1, ft_putchar);
-	tcsetattr(0, TCSANOW, &(shell->oldterm));
-	select = shell->select;
-	while (select->prev != NULL)
-		select = select->prev;
-	shell->select = select;
-	if (sig == SIGTSTP)
-	{
-//		SIG_DFL;
-//		ioctl(1, TIOCSTI, &ws);
-//		tputs(tgetstr("ke", NULL), 0, ft_putchar);
-//		tputs(tgetstr("te", NULL), 0, ft_putchar);
-//		tputs(tgetstr("ve", NULL), 0, ft_putchar);
-//		tputs(tgetstr("cd", NULL), 0, ft_putchar);
-//		fflush(stdout);
-	}
-}
-*/
 
 void	sig_cont(int sig)
 {

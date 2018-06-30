@@ -6,7 +6,7 @@
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 17:40:06 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 17:51:09 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 17:56:27 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,35 @@ void		init_p(t_pos *p)
 	p->i = 0;
 	p->x = 0;
 	p->y = 0;
+}
+
+void		ft_get_pos(t_select *select, t_shell *shell)
+{
+	t_pos		p;
+	t_select	*save;
+	int			sc;
+
+	sc = 0;
+	save = select;
+	init_p(&p);
+	shell->nw_line = 1;
+	p.res = shell->ws_col / (shell->word + 2);
+	shell->nw_line = p.res;
+	while (save != NULL)
+	{
+		p.x = (shell->word + 2) * p.i;
+		save->pos_x = p.x + 1;
+		save->pos_y = p.y;
+		save = save->next;
+		p.i++;
+		if (p.i == p.res)
+		{
+			p.i = 0;
+			p.x = 0;
+			p.y++;
+		}
+	}
+	shell->scroll = ft_get_scroll(shell, &p);
 }
 
 void		ft_found_printer(t_select *select, t_shell *shell)
