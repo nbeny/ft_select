@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 18:18:02 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 21:30:45 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 typedef struct		s_scroll
 {
-	int		i;
-	int		sc;
-	int		y;
+	int				i;
+	int				sc;
+	int				y;
 }					t_scroll;
 typedef struct		s_shell
 {
@@ -98,6 +98,9 @@ void				ft_print_selection(t_select *select, t_shell *shell);
 **key2
 */
 void				ft_sheck_pos(t_shell *term);
+void				ft_up_arrow_norme(t_select *select, t_shell *shell);
+void				ft_right_arrow_norme(t_select *select, t_shell *shell);
+t_select			*ft_get_key(t_select *select, t_shell *shell);
 /*
 **select
 */
