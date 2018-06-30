@@ -6,7 +6,7 @@
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 17:42:24 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 18:01:43 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 21:37:39 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_print_select(t_select *select, t_shell *shell)
 			if (save->select == 0)
 				ft_printf(0, "[%-*s]", shell->word, save->name);
 			if (save->select == 1)
-				ft_printf(0, "\[\033[34;7m%-*s\033[0m]", shell->word, save->name);
+				ft_printf(0, "\[\033[34;7m%-*s\033[0m]",\
+							shell->word, save->name);
 			save = save->next;
 			i++;
 		}

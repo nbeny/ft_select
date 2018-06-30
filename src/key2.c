@@ -6,7 +6,7 @@
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 18:14:40 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 21:31:08 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/06/30 21:33:57 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ t_select	*ft_get_key(t_select *select, t_shell *shell)
 	read(0, buff, 3);
 	if (buff[0] == 27)
 	{
-		if ((buff[1] == 91 && buff[2] == 'A') || (buff[1] == 91 && buff[2] == 'B') ||\
-			(buff[1] == 91 && buff[2] == 'C') || (buff[1] == 91 && buff[2] == 'D'))
-			select = ft_get_arrow(select, shell, buff);
+		select = ft_get_arrow(select, shell, buff);
 		if ((buff[1] == 0 || buff[1] == 27 || buff[1] == 10) &&
 			(buff[2] == 0 || buff[2] == 27 || buff[2] == 10))
 		{
