@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/30 17:41:58 by nbeny             #+#    #+#             */
+/*   Updated: 2018/06/30 17:49:53 by nbeny            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 t_select	*ft_create_select(t_select *begin_list, char *name)
@@ -56,9 +68,7 @@ void		ft_get_pos(t_select *select, t_shell *shell)
 
 	sc = 0;
 	save = select;
-	p.i = 0;
-	p.x = 0;
-	p.y = 0;
+	init_p(&p);
 	shell->nw_line = 1;
 	p.res = shell->ws_col / (shell->word + 2);
 	shell->nw_line = p.res;
@@ -113,15 +123,5 @@ t_select	*ft_mem_arguments(char **av, t_select *select, t_shell *shell)
 	}
 	ft_get_pos(select, shell);
 	shell->select = select;
-/*
-	while (select)
-	{
-		ft_printf(2, "[%i][%i]\n", select->pos_x, select->pos_y);
-		ft_printf(2, "[%s]\n", select->name);
-		select = select->next;
-	}
-	ft_printf(2, "{%i}\n", shell->word);
-	exit(1);
-*/
 	return (select);
 }

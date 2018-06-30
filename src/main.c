@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/30 17:42:18 by nbeny             #+#    #+#             */
+/*   Updated: 2018/06/30 17:43:02 by nbeny            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 void	ft_init_term(t_shell *shell)
@@ -49,7 +61,6 @@ int		main(int ac, char **av)
 	select = NULL;
 	if (ac > 1)
 	{
-//		signal(SIGCONT, sig_cont);
 		shell = select_static();
 		ft_init_term(shell);
 		ft_update_window(shell);

@@ -6,7 +6,7 @@
 #    By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/16 14:57:18 by nbeny             #+#    #+#              #
-#    Updated: 2017/03/15 02:22:09 by nbeny            ###   ########.fr        #
+#    Updated: 2018/06/30 17:52:22 by nbeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(NAME): $(OBJ)
 		@ranlib $(NAME)
 
 $(T_OBJ)%.o: $(T_SRC)%.c
-		@echo ">$(CL_V)Creat: Objects files..$(CL_N)"
+#		@echo ">$(CL_V)Creat: Objects files..$(CL_N)"
 		@mkdir -p $(T_OBJ)
 		@$(CC) $(CC_FLAG) -o $@ -c $^ $(INC)
 
