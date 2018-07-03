@@ -6,17 +6,17 @@
 #    By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/12 01:47:28 by nbeny             #+#    #+#              #
-#    Updated: 2018/06/30 18:18:20 by nbeny            ###   ########.fr        #
+#    Updated: 2018/07/03 20:07:38 by nbeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_select
 
 N_INC	=	ft_select.h
-N_SRC	=	main.c arg.c key.c key2.c put.c select.c signal.c
+N_SRC	=	main.c arg.c key.c key2.c put.c put2.c select.c signal.c
 
 CC		=	gcc
-CC_FLAG	=	-g -Wextra -Wall -Werror
+CC_FLAG	=	-Wextra -Wall -Werror
 CURSES	=	-lncurses
 T_SRC	=	./src/
 T_INC	=	./include/

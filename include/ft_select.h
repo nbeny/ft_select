@@ -6,7 +6,7 @@
 /*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 10:09:56 by nbeny             #+#    #+#             */
-/*   Updated: 2018/06/30 21:30:45 by nbeny            ###   ########.fr       */
+/*   Updated: 2018/07/03 20:25:18 by nbeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ t_select			*ft_right_arrow(t_select *select, t_shell *shell);
 t_select			*ft_left_arrow(t_select *select, t_shell *shell);
 void				ft_keys_select(t_select *select, t_shell *shell);
 /*
+**key2
+*/
+void				ft_sheck_pos(t_shell *term);
+void				ft_up_arrow_norme(t_select *select, t_shell *shell);
+void				ft_right_arrow_norme(t_select *select, t_shell *shell);
+t_select			*ft_get_key(t_select *select, t_shell *shell);
+/*
 **put
 */
 void				ft_print_select(t_select *select, t_shell *shell);
@@ -95,12 +102,12 @@ void				ft_print_cursor(t_select *select, t_shell *shell);
 void				ft_print_first_cursor(t_select *select, t_shell *shell);
 void				ft_print_selection(t_select *select, t_shell *shell);
 /*
-**key2
+**put2
 */
-void				ft_sheck_pos(t_shell *term);
-void				ft_up_arrow_norme(t_select *select, t_shell *shell);
-void				ft_right_arrow_norme(t_select *select, t_shell *shell);
-t_select			*ft_get_key(t_select *select, t_shell *shell);
+t_select			*ft_print_select_mid(t_shell *shell,\
+											t_select *save, int i);
+void				ft_print_select2(t_select *select, t_shell *shell,\
+											t_select *save);
 /*
 **select
 */
