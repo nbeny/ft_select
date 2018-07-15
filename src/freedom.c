@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   freedom.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,3 +11,22 @@
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void		ft_freedom(t_select *select)
+{
+	t_select	*f;
+	t_select	*s;
+
+	s = select;
+	f = NULL;
+	while (s->prev != NULL)
+		s = s->prev;
+	while (s != NULL)
+	{
+		f = s;
+		ft_strdel(&(f->name));
+		s = s->next;
+		free(f);
+		f = NULL;
+	}
+}

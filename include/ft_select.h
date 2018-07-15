@@ -124,4 +124,8 @@ void				sig_segv(int sig);
 void				sig_stop(int sig);
 void				sig_cont(int sig);
 void				sig_int(int sig);
+/*
+**free
+*/
+void				ft_freedom(t_select *free);
 #endif

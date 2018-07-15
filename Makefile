@@ -13,7 +13,8 @@
 NAME	=	ft_select
 
 N_INC	=	ft_select.h
-N_SRC	=	main.c arg.c key.c key2.c put.c put2.c select.c signal.c
+N_SRC	=	main.c arg.c key.c key2.c put.c\
+			put2.c select.c signal.c freedom.c
 
 CC		=	gcc
 CC_FLAG	=	-Wextra -Wall -Werror

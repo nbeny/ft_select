@@ -98,6 +98,7 @@ t_select	*ft_get_key(t_select *select, t_shell *shell)
 		if ((buff[1] == 0 || buff[1] == 27 || buff[1] == 10) &&
 			(buff[2] == 0 || buff[2] == 27 || buff[2] == 10))
 		{
+			ft_freedom(select);
 			tputs(tgetstr("ve", NULL), 1, ft_putchar);
 			tcsetattr(0, TCSADRAIN, &(shell->oldterm));
 			exit(EXIT_SUCCESS);

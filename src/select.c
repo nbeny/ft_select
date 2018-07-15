@@ -113,5 +113,6 @@ void		ft_enter(t_select *select, t_shell *shell)
 			ft_printf(1, "%s ", s->name);
 		s = s->next;
 	}
+	ft_freedom(select);
 	exit(EXIT_SUCCESS);
 }
